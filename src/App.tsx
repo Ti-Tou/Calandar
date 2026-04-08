@@ -10,6 +10,7 @@ import ShareModal from './components/ShareModal/ShareModal'
 import ImportPrompt from './components/ImportPrompt/ImportPrompt'
 import { storePendingShare, consumePendingShare, decodeEvents } from './utils/shareUtils'
 import type { CalendarEvent } from './types'
+import Spinner from './components/Spinner'
 
 // Detect share hash immediately on load, before PIN gate renders
 function detectShareHash() {
@@ -37,6 +38,8 @@ function CalendarApp() {
       setPendingEvents(events)
     }
   }, [])
+
+  if (state.loading) return <Spinner />
 
   return (
     <div className="flex flex-col h-screen bg-white">
